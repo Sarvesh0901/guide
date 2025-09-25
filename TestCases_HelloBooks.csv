@@ -1,0 +1,108 @@
+ID,Suite,Title,Prerequisites/Test Data,Steps,Expected Result,Priority,Type,Status,Automated
+TC001,Signup,Happy Path - New User Registration,Valid unique email and strong password,"1. Navigate to signup page
+2. Enter valid email
+3. Enter strong password  
+4. Confirm password
+5. Fill required fields
+6. Submit form
+7. Complete email verification",Account created successfully and redirected to onboarding,P1,Positive,,Yes
+TC002,Signup,Email Field - Required Validation,Empty email field,"1. Navigate to signup page
+2. Leave email field empty
+3. Enter password
+4. Submit form","Error message ""Email is required"" displayed and form not submitted",P1,Negative,,Yes
+TC003,Signup,Password Field - Required Validation,Empty password field,"1. Navigate to signup page
+2. Enter valid email
+3. Leave password field empty
+4. Submit form","Error message ""Password is required"" displayed and form not submitted",P1,Negative,,Yes
+TC004,Signup,Email Format - Invalid Format,Invalid email format,"1. Navigate to signup page
+2. Enter invalid email (e.g. test@domain)
+3. Enter valid password
+4. Submit form","Error message ""Please enter a valid email"" displayed",P1,Negative,,Yes
+TC005,Signup,Password Policy - Weak Password,Weak password (e.g. 123),"1. Navigate to signup page
+2. Enter valid email
+3. Enter weak password
+4. Submit form",Error message about password requirements displayed,P1,Negative,,Yes
+TC006,Signup,Duplicate Email Handling,Existing registered email,"1. Navigate to signup page
+2. Enter already registered email
+3. Enter valid password
+4. Submit form","Error message ""Email already registered"" displayed",P2,Negative,,Yes
+TC007,Signup,Password Confirmation Mismatch,Mismatched passwords,"1. Navigate to signup page
+2. Enter valid email
+3. Enter password
+4. Enter different confirmation password
+5. Submit form","Error message ""Passwords do not match"" displayed",P2,Negative,,Yes
+TC008,Signup,Email Verification Process,Valid signup data,"1. Complete signup process
+2. Check email for verification link
+3. Click verification link",Email verified and account activated,P1,Positive,,Yes
+TC009,Signup,XSS in Name Field,XSS payload in name,"1. Navigate to signup page
+2. Enter script tag in name field
+3. Complete other fields
+4. Submit form",Input sanitized and no script execution,P2,Security,,Yes
+TC010,Signup,Long Input Boundary Test,256+ character input,"1. Navigate to signup page
+2. Enter very long text in name field
+3. Complete other fields
+4. Submit form",Graceful error or character limit enforced,P3,Negative,,Yes
+TC011,Signup,Password Masking,Any password,"1. Navigate to signup page
+2. Enter password in password field
+3. Observe password display",Password characters are masked,P2,Positive,,Yes
+TC012,Signup,Form Field Navigation,Valid data,"1. Navigate to signup page
+2. Use Tab key to navigate through fields
+3. Complete form using keyboard only",All fields accessible via keyboard navigation,P3,Positive,,Manual
+TC013,Login,Happy Path - Valid Credentials,Valid registered user,"1. Navigate to login page
+2. Enter valid email
+3. Enter correct password
+4. Click login",Successfully logged in and redirected to dashboard,P1,Positive,,Yes
+TC014,Login,Invalid Password,Valid email and wrong password,"1. Navigate to login page
+2. Enter valid email
+3. Enter incorrect password
+4. Click login","Error message ""Invalid credentials"" displayed and no session created",P1,Negative,,Yes
+TC015,Login,Unregistered Email,Unregistered email,"1. Navigate to login page
+2. Enter unregistered email
+3. Enter any password
+4. Click login","Error message ""User not found"" displayed and no session created",P1,Negative,,Yes
+TC016,Login,Empty Email Field,Empty email,"1. Navigate to login page
+2. Leave email field empty
+3. Enter password
+4. Click login","Error message ""Email is required"" displayed",P1,Negative,,Yes
+TC017,Login,Empty Password Field,Empty password,"1. Navigate to login page
+2. Enter valid email
+3. Leave password field empty
+4. Click login","Error message ""Password is required"" displayed",P1,Negative,,Yes
+TC018,Login,Remember Me Functionality,Valid credentials with Remember Me,"1. Navigate to login page
+2. Enter valid credentials
+3. Check ""Remember Me""
+4. Login
+5. Close browser
+6. Reopen and navigate to site",User remains logged in without re-entering credentials,P2,Positive,,Partial
+TC019,Login,Logout Functionality,Logged in user,"1. Login with valid credentials
+2. Click logout button
+3. Try to access protected page",Successfully logged out and redirected to login page,P1,Positive,,Yes
+TC020,Login,Session Invalidation,Logged in user,"1. Login with valid credentials
+2. Logout
+3. Use browser back button",Cannot access protected content and session invalidated,P2,Positive,,Manual
+TC021,Login,Rate Limiting/Account Lockout,Valid email and multiple failures,"1. Navigate to login page
+2. Enter valid email
+3. Enter wrong password 5+ times
+4. Attempt to login again",Account temporarily locked or rate limited,P3,Security,,Manual
+TC022,Login,Forgot Password Link,N/A,"1. Navigate to login page
+2. Check for ""Forgot Password"" link
+3. Click link",Forgot password page or modal opens,P3,Positive,,Yes
+TC023,Onboarding,Organization Setup,Newly registered user,"1. Complete signup process
+2. Login for first time
+3. Fill organization details
+4. Submit",Organization created and user proceeds to next step,P1,Positive,,Yes
+TC024,Onboarding,Required Fields Validation,New user in onboarding,"1. Navigate to onboarding step
+2. Leave required fields empty
+3. Try to proceed",Error messages displayed for required fields,P2,Negative,,Yes
+TC025,Onboarding,Skip Optional Steps,New user in onboarding,"1. Navigate through onboarding
+2. Skip optional steps
+3. Complete required steps only",Successfully complete onboarding with minimal data,P2,Positive,,Yes
+TC026,Onboarding,Navigation Between Steps,New user in onboarding,"1. Start onboarding process
+2. Use ""Back"" and ""Next"" buttons
+3. Navigate between steps","Smooth navigation and data preserved between steps",P2,Positive,,Yes
+TC027,General,Browser Compatibility - Chrome,N/A,Execute core test cases in Chrome browser,All functionality works as expected,P1,Positive,,Yes
+TC028,General,Browser Compatibility - Firefox,N/A,Execute core test cases in Firefox browser,All functionality works as expected,P2,Positive,,Configurable
+TC029,General,Responsive Design - Mobile View,N/A,"1. Resize browser to mobile dimensions
+2. Test login and signup flows",UI adapts properly to mobile view,P3,Positive,,Manual
+TC030,Security,HTTPS Enforcement,N/A,"1. Navigate to HTTP version of site
+2. Attempt to login",Redirected to HTTPS and secure connection enforced,P2,Security,,Manual

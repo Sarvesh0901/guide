@@ -366,4 +366,5 @@ After running the complete test suite, you should see:
 - **Screenshots**: Captured on failures
 - **Execution Time**: ~5-10 minutes (depending on application response times)
 
-For questions or issues, please refer to the test execution logs and generated reports.
+For questions or issues, please refer to the test execution logs and generated reports.#   g u i d e  
+ 
